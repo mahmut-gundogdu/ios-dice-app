@@ -10,10 +10,22 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let backgroundView = UIImageView()
     var dice1Index:Int = 0
     var dice2Index:Int = 0
     @IBOutlet weak var dice1: UIImageView!
     @IBOutlet weak var dice2: UIImageView!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setBackground()
+        updateDiceImage()
+        // Do any additional setup after loading the view.
+        
+    
+    }
+    
     @IBAction func buttonClick() {
         updateDiceImage()
     }
@@ -41,13 +53,19 @@ class ViewController: UIViewController {
         dice2.image = image2
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-         updateDiceImage()
-        // Do any additional setup after loading the view.
-    }
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         updateDiceImage()
+    }
+    
+    func setBackground(){
+        view.addSubview(backgroundView)
+        backgroundView.translatesAutoresizingMaskIntoConstraints  = false
+        backgroundView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        backgroundView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        backgroundView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        backgroundView.image = UIImage(named: "background")
+         view.sendSubviewToBack(backgroundView)
     }
     
     
